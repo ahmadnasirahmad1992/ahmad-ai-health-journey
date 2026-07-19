@@ -1,0 +1,599 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyPqZP37g1zAXWTSu8QmlKGe",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/ahmadnasirahmad1992/ahmad-ai-health-journey/blob/main/DAY1_RICH%20DATA\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 3,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "ZmJPRvRznEvm",
+        "outputId": "3a58bfba-c71c-441a-ac14-364ee3d67dbc"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Mounted at /content/drive\n"
+          ]
+        }
+      ],
+      "source": [
+        "from google.colab import drive\n",
+        "drive.mount('/content/drive')"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "import pandas as pd\n",
+        "\n",
+        "df = pd.read_stata(\n",
+        "    '/content/drive/MyDrive/AHMAD NASIR/SKILLS UPGRADE/NGIR8BFL.dta',\n",
+        "    convert_categoricals=False\n",
+        ")\n",
+        "\n",
+        "print(\"Women:\", df.shape[0])\n",
+        "print(\"Variables:\", df.shape[1])\n",
+        "\n",
+        "# Display the first 5 rows\n",
+        "df.head()"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 290
+        },
+        "id": "NcMV3ovZnTVb",
+        "outputId": "c73fb24b-ea0b-46f8-ea59-5d249d5d0cdf"
+      },
+      "execution_count": 5,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Women: 39050\n",
+            "Variables: 6411\n"
+          ]
+        },
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "            caseid v000  v001  v002  v003  v004    v005  v006  v007  v008  \\\n",
+              "0         1   2  2  NG8     1     2     2     1  491963     1  2024  1489   \n",
+              "1         1   2  4  NG8     1     2     4     1  491963     1  2024  1489   \n",
+              "2         1   6  2  NG8     1     6     2     1  491963     1  2024  1489   \n",
+              "3         1   9  5  NG8     1     9     5     1  491963     1  2024  1489   \n",
+              "4         1   9  7  NG8     1     9     7     1  491963     1  2024  1489   \n",
+              "\n",
+              "   ...  s626bc_3  s626bc_4  s626bc_5  s626bc_6  s631a_1  s631a_2  s631a_3  \\\n",
+              "0  ...       NaN       NaN       NaN       NaN      NaN      NaN      NaN   \n",
+              "1  ...       NaN       NaN       NaN       NaN      NaN      NaN      NaN   \n",
+              "2  ...       NaN       NaN       NaN       NaN      NaN      NaN      NaN   \n",
+              "3  ...       NaN       NaN       NaN       NaN      NaN      NaN      NaN   \n",
+              "4  ...       NaN       NaN       NaN       NaN      NaN      NaN      NaN   \n",
+              "\n",
+              "   s631a_4  s631a_5  s631a_6  \n",
+              "0      NaN      NaN      NaN  \n",
+              "1      NaN      NaN      NaN  \n",
+              "2      NaN      NaN      NaN  \n",
+              "3      NaN      NaN      NaN  \n",
+              "4      NaN      NaN      NaN  \n",
+              "\n",
+              "[5 rows x 6411 columns]"
+            ],
+            "text/html": [
+              "\n",
+              "  <div id=\"df-2b21cf7e-9e68-4cd5-b81a-3d3c27f47ef8\" class=\"colab-df-container\">\n",
+              "    <div>\n",
+              "<style scoped>\n",
+              "    .dataframe tbody tr th:only-of-type {\n",
+              "        vertical-align: middle;\n",
+              "    }\n",
+              "\n",
+              "    .dataframe tbody tr th {\n",
+              "        vertical-align: top;\n",
+              "    }\n",
+              "\n",
+              "    .dataframe thead th {\n",
+              "        text-align: right;\n",
+              "    }\n",
+              "</style>\n",
+              "<table border=\"1\" class=\"dataframe\">\n",
+              "  <thead>\n",
+              "    <tr style=\"text-align: right;\">\n",
+              "      <th></th>\n",
+              "      <th>caseid</th>\n",
+              "      <th>v000</th>\n",
+              "      <th>v001</th>\n",
+              "      <th>v002</th>\n",
+              "      <th>v003</th>\n",
+              "      <th>v004</th>\n",
+              "      <th>v005</th>\n",
+              "      <th>v006</th>\n",
+              "      <th>v007</th>\n",
+              "      <th>v008</th>\n",
+              "      <th>...</th>\n",
+              "      <th>s626bc_3</th>\n",
+              "      <th>s626bc_4</th>\n",
+              "      <th>s626bc_5</th>\n",
+              "      <th>s626bc_6</th>\n",
+              "      <th>s631a_1</th>\n",
+              "      <th>s631a_2</th>\n",
+              "      <th>s631a_3</th>\n",
+              "      <th>s631a_4</th>\n",
+              "      <th>s631a_5</th>\n",
+              "      <th>s631a_6</th>\n",
+              "    </tr>\n",
+              "  </thead>\n",
+              "  <tbody>\n",
+              "    <tr>\n",
+              "      <th>0</th>\n",
+              "      <td>1   2  2</td>\n",
+              "      <td>NG8</td>\n",
+              "      <td>1</td>\n",
+              "      <td>2</td>\n",
+              "      <td>2</td>\n",
+              "      <td>1</td>\n",
+              "      <td>491963</td>\n",
+              "      <td>1</td>\n",
+              "      <td>2024</td>\n",
+              "      <td>1489</td>\n",
+              "      <td>...</td>\n",
+              "      <td>NaN</td>\n",
+              "      <td>NaN</td>\n",
+              "      <td>NaN</td>\n",
+              "      <td>NaN</td>\n",
+              "      <td>NaN</td>\n",
+              "      <td>NaN</td>\n",
+              "      <td>NaN</td>\n",
+              "      <td>NaN</td>\n",
+              "      <td>NaN</td>\n",
+              "      <td>NaN</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>1</th>\n",
+              "      <td>1   2  4</td>\n",
+              "      <td>NG8</td>\n",
+              "      <td>1</td>\n",
+              "      <td>2</td>\n",
+              "      <td>4</td>\n",
+              "      <td>1</td>\n",
+              "      <td>491963</td>\n",
+              "      <td>1</td>\n",
+              "      <td>2024</td>\n",
+              "      <td>1489</td>\n",
+              "      <td>...</td>\n",
+              "      <td>NaN</td>\n",
+              "      <td>NaN</td>\n",
+              "      <td>NaN</td>\n",
+              "      <td>NaN</td>\n",
+              "      <td>NaN</td>\n",
+              "      <td>NaN</td>\n",
+              "      <td>NaN</td>\n",
+              "      <td>NaN</td>\n",
+              "      <td>NaN</td>\n",
+              "      <td>NaN</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>2</th>\n",
+              "      <td>1   6  2</td>\n",
+              "      <td>NG8</td>\n",
+              "      <td>1</td>\n",
+              "      <td>6</td>\n",
+              "      <td>2</td>\n",
+              "      <td>1</td>\n",
+              "      <td>491963</td>\n",
+              "      <td>1</td>\n",
+              "      <td>2024</td>\n",
+              "      <td>1489</td>\n",
+              "      <td>...</td>\n",
+              "      <td>NaN</td>\n",
+              "      <td>NaN</td>\n",
+              "      <td>NaN</td>\n",
+              "      <td>NaN</td>\n",
+              "      <td>NaN</td>\n",
+              "      <td>NaN</td>\n",
+              "      <td>NaN</td>\n",
+              "      <td>NaN</td>\n",
+              "      <td>NaN</td>\n",
+              "      <td>NaN</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>3</th>\n",
+              "      <td>1   9  5</td>\n",
+              "      <td>NG8</td>\n",
+              "      <td>1</td>\n",
+              "      <td>9</td>\n",
+              "      <td>5</td>\n",
+              "      <td>1</td>\n",
+              "      <td>491963</td>\n",
+              "      <td>1</td>\n",
+              "      <td>2024</td>\n",
+              "      <td>1489</td>\n",
+              "      <td>...</td>\n",
+              "      <td>NaN</td>\n",
+              "      <td>NaN</td>\n",
+              "      <td>NaN</td>\n",
+              "      <td>NaN</td>\n",
+              "      <td>NaN</td>\n",
+              "      <td>NaN</td>\n",
+              "      <td>NaN</td>\n",
+              "      <td>NaN</td>\n",
+              "      <td>NaN</td>\n",
+              "      <td>NaN</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>4</th>\n",
+              "      <td>1   9  7</td>\n",
+              "      <td>NG8</td>\n",
+              "      <td>1</td>\n",
+              "      <td>9</td>\n",
+              "      <td>7</td>\n",
+              "      <td>1</td>\n",
+              "      <td>491963</td>\n",
+              "      <td>1</td>\n",
+              "      <td>2024</td>\n",
+              "      <td>1489</td>\n",
+              "      <td>...</td>\n",
+              "      <td>NaN</td>\n",
+              "      <td>NaN</td>\n",
+              "      <td>NaN</td>\n",
+              "      <td>NaN</td>\n",
+              "      <td>NaN</td>\n",
+              "      <td>NaN</td>\n",
+              "      <td>NaN</td>\n",
+              "      <td>NaN</td>\n",
+              "      <td>NaN</td>\n",
+              "      <td>NaN</td>\n",
+              "    </tr>\n",
+              "  </tbody>\n",
+              "</table>\n",
+              "<p>5 rows × 6411 columns</p>\n",
+              "</div>\n",
+              "    <div class=\"colab-df-buttons\">\n",
+              "\n",
+              "  <div class=\"colab-df-container\">\n",
+              "    <button class=\"colab-df-convert\" onclick=\"convertToInteractive('df-2b21cf7e-9e68-4cd5-b81a-3d3c27f47ef8')\"\n",
+              "            title=\"Convert this dataframe to an interactive table.\"\n",
+              "            style=\"display:none;\">\n",
+              "\n",
+              "  <svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24px\" viewBox=\"0 -960 960 960\">\n",
+              "    <path d=\"M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z\"/>\n",
+              "  </svg>\n",
+              "    </button>\n",
+              "\n",
+              "  <style>\n",
+              "    .colab-df-container {\n",
+              "      display:flex;\n",
+              "      gap: 12px;\n",
+              "    }\n",
+              "\n",
+              "    .colab-df-convert {\n",
+              "      background-color: #E8F0FE;\n",
+              "      border: none;\n",
+              "      border-radius: 50%;\n",
+              "      cursor: pointer;\n",
+              "      display: none;\n",
+              "      fill: #1967D2;\n",
+              "      height: 32px;\n",
+              "      padding: 0 0 0 0;\n",
+              "      width: 32px;\n",
+              "    }\n",
+              "\n",
+              "    .colab-df-convert:hover {\n",
+              "      background-color: #E2EBFA;\n",
+              "      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);\n",
+              "      fill: #174EA6;\n",
+              "    }\n",
+              "\n",
+              "    .colab-df-buttons div {\n",
+              "      margin-bottom: 4px;\n",
+              "    }\n",
+              "\n",
+              "    [theme=dark] .colab-df-convert {\n",
+              "      background-color: #3B4455;\n",
+              "      fill: #D2E3FC;\n",
+              "    }\n",
+              "\n",
+              "    [theme=dark] .colab-df-convert:hover {\n",
+              "      background-color: #434B5C;\n",
+              "      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);\n",
+              "      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));\n",
+              "      fill: #FFFFFF;\n",
+              "    }\n",
+              "  </style>\n",
+              "\n",
+              "    <script>\n",
+              "      const buttonEl =\n",
+              "        document.querySelector('#df-2b21cf7e-9e68-4cd5-b81a-3d3c27f47ef8 button.colab-df-convert');\n",
+              "      buttonEl.style.display =\n",
+              "        google.colab.kernel.accessAllowed ? 'block' : 'none';\n",
+              "\n",
+              "      async function convertToInteractive(key) {\n",
+              "        const element = document.querySelector('#df-2b21cf7e-9e68-4cd5-b81a-3d3c27f47ef8');\n",
+              "        const dataTable =\n",
+              "          await google.colab.kernel.invokeFunction('convertToInteractive',\n",
+              "                                                    [key], {});\n",
+              "        if (!dataTable) return;\n",
+              "\n",
+              "        const docLinkHtml = 'Like what you see? Visit the ' +\n",
+              "          '<a target=\"_blank\" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'\n",
+              "          + ' to learn more about interactive tables.';\n",
+              "        element.innerHTML = '';\n",
+              "        dataTable['output_type'] = 'display_data';\n",
+              "        await google.colab.output.renderOutput(dataTable, element);\n",
+              "        const docLink = document.createElement('div');\n",
+              "        docLink.innerHTML = docLinkHtml;\n",
+              "        element.appendChild(docLink);\n",
+              "      }\n",
+              "    </script>\n",
+              "  </div>\n",
+              "\n",
+              "\n",
+              "    </div>\n",
+              "  </div>\n"
+            ],
+            "application/vnd.google.colaboratory.intrinsic+json": {
+              "type": "dataframe",
+              "variable_name": "df"
+            }
+          },
+          "metadata": {},
+          "execution_count": 5
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "print(df.shape)\n",
+        "df.head()\n",
+        "for v in ['v005','v024','v025','v106','v190','v481','m14','m15']:\n",
+        "  print (v, 'in data:', v in df.columns)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "MgxfFRyqnyRG",
+        "outputId": "677bb208-1a60-4b71-de0a-4dd37aca9a40"
+      },
+      "execution_count": 14,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "(39050, 6411)\n",
+            "v005 in data: True\n",
+            "v024 in data: True\n",
+            "v025 in data: True\n",
+            "v106 in data: True\n",
+            "v190 in data: True\n",
+            "v481 in data: True\n",
+            "m14 in data: False\n",
+            "m15 in data: False\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# Find all m14 and m15 variables (they have suffixes)\n",
+        "m14_vars = [c for c in df.columns if c.startswith('m14')]\n",
+        "m15_vars = [c for c in df.columns if c.startswith('m15')]\n",
+        "print(\"m14 variables:\", m14_vars)\n",
+        "print(\"m15 variables:\", m15_vars)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "87ZveB8huCV3",
+        "outputId": "8328f319-af9d-4956-c4c7-f01f9e7b6f43"
+      },
+      "execution_count": 15,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "m14 variables: ['m14_1', 'm14_2', 'm14_3', 'm14_4', 'm14_5', 'm14_6']\n",
+            "m15 variables: ['m15_1', 'm15_2', 'm15_3', 'm15_4', 'm15_5', 'm15_6']\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# ANC provider and delivery assistance variables\n",
+        "anc_vars = [c for c in df.columns if c.startswith('m2')]\n",
+        "del_vars = [c for c in df.columns if c.startswith('m3')]\n",
+        "print(\"ANC provider (m2):\", anc_vars[:15])\n",
+        "print(\"Delivery assistance (m3):\", del_vars[:15])"
+      ],
+      "metadata": {
+        "id": "NpKNx56O_m5D",
+        "outputId": "6c491c19-27c8-4c23-b1ca-beac7cc593f2",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        }
+      },
+      "execution_count": 16,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "ANC provider (m2): ['m2a_1', 'm2a_2', 'm2a_3', 'm2a_4', 'm2a_5', 'm2a_6', 'm2b_1', 'm2b_2', 'm2b_3', 'm2b_4', 'm2b_5', 'm2b_6', 'm2c_1', 'm2c_2', 'm2c_3']\n",
+            "Delivery assistance (m3): ['m3a_1', 'm3a_2', 'm3a_3', 'm3a_4', 'm3a_5', 'm3a_6', 'm3b_1', 'm3b_2', 'm3b_3', 'm3b_4', 'm3b_5', 'm3b_6', 'm3c_1', 'm3c_2', 'm3c_3']\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# Look for the state variable\n",
+        "candidates = [c for c in df.columns if c in ['v101','v024','sstate','shstate','sdist']]\n",
+        "print(\"Possible geography variables:\", candidates)\n",
+        "\n",
+        "# Also check what v024 contains (region/zone or state?)\n",
+        "print(df['v024'].value_counts().head(40))"
+      ],
+      "metadata": {
+        "id": "6BWNpb4-_xCX",
+        "outputId": "16f408bf-78f0-4153-8e0d-a31112809791",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        }
+      },
+      "execution_count": 17,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Possible geography variables: ['v024', 'v101', 'sstate']\n",
+            "v024\n",
+            "1    9404\n",
+            "3    7591\n",
+            "2    6338\n",
+            "5    5534\n",
+            "6    5115\n",
+            "4    5068\n",
+            "Name: count, dtype: int64\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# Check sstate - likely your 36 states\n",
+        "print(\"sstate values:\", df['sstate'].nunique(), \"unique\")\n",
+        "print(df['sstate'].value_counts().head(40))"
+      ],
+      "metadata": {
+        "id": "yfABUadGAUqb",
+        "outputId": "f5f1eef2-d461-468f-e851-441df51d720d",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        }
+      },
+      "execution_count": 18,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "sstate values: 37 unique\n",
+            "sstate\n",
+            "10    1884\n",
+            "11    1462\n",
+            "28    1370\n",
+            "1     1361\n",
+            "16    1357\n",
+            "12    1342\n",
+            "13    1308\n",
+            "4     1293\n",
+            "33    1195\n",
+            "3     1177\n",
+            "15    1149\n",
+            "9     1144\n",
+            "8     1142\n",
+            "7     1113\n",
+            "21    1099\n",
+            "5     1085\n",
+            "26    1037\n",
+            "36    1015\n",
+            "20    1007\n",
+            "32    1005\n",
+            "37     999\n",
+            "19     977\n",
+            "18     963\n",
+            "35     957\n",
+            "17     950\n",
+            "25     921\n",
+            "6      904\n",
+            "2      885\n",
+            "29     880\n",
+            "27     832\n",
+            "14     830\n",
+            "34     828\n",
+            "31     824\n",
+            "24     759\n",
+            "30     753\n",
+            "22     674\n",
+            "23     569\n",
+            "Name: count, dtype: int64\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "print(\"v101 values:\", df['v101'].nunique(), \"unique\")"
+      ],
+      "metadata": {
+        "id": "InDDS91dA5WN",
+        "outputId": "0d835a3a-53ca-4d7b-aea2-41cf9c4b81e6",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        }
+      },
+      "execution_count": 19,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "v101 values: 6 unique\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "fRmT6jtfBCiw"
+      },
+      "execution_count": null,
+      "outputs": []
+    }
+  ]
+}
